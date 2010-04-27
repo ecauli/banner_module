@@ -1,0 +1,31 @@
+<% form_for banner,  :html => { :multipart => true }  do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :titulo %><br />
+    <%= f.text_field :titulo %>
+  </p>
+  <p>
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.label :click %><br />
+    <%= f.text_field :click %>
+  </p>
+  <p>
+    <%= f.label :arquivo, "Arquivo" %>
+    <%= f.file_field :arquivo %>
+  </p>
+  <p>
+    <%= f.label "Banner 1" %><br />
+    <%= f.check_box :topo %>
+  </p>  
+  <p>
+    <%= f.label "Banner 2" %><br />
+    <%= f.check_box :conteudo %>
+  </p>
+  <p>
+    <%= f.submit 'Enviar' %>
+  </p>
+<% end %>

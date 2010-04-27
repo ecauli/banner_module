@@ -1,0 +1,45 @@
+Background
+==========
+
+Create a helpers/controller/views to control e show ramdom banners.
+
+Dependencies:
+=============
+paperclip
+acl9
+
+
+Install
+=======
+Run:
+
+gem sources -a http://gemcutter.org
+gem install banner_module
+
+put in your environment.rb :
+config.gem "banner_module"
+config.reload_plugins = true
+
+
+Run:
+//create the migration of background tables
+script/generate banner_module migration
+rake db:migrate
+
+
+Use the gem
+===========
+
+
+IMPORTANT
+=========
+This gem is to be use with acl9
+The menu is able just for user with :moderator role
+
+The menu will use the layout "adm" and "adm-clean"
+
+
+=========
+
+
+Copyright (c) 2010 Eduardo Cauli, released under the MIT license

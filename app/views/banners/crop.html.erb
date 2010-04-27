@@ -1,0 +1,32 @@
+<% title "Edição de Banner" %>  
+<% content_for (:head) do %>  
+	<%= javascript_include_tag 'jquery' %>
+	<%= stylesheet_link_tag "jquery.Jcrop" %>  
+	<%= javascript_include_tag "jquery.Jcrop.min" %>  
+	<script type="text/javascript">  
+		jQuery.noConflict();
+		jQuery(document).ready(function() {
+		    jQuery('#cropbox').Jcrop({  
+			    onChange: update_crop,  
+			    onSelect: update_crop,   
+			    aspectRatio: 3.3 
+			  });  
+		});
+		function update_crop(coords) {  
+		  var ratio = <%= @banner.arquivo_geometry(:original).width %> / <%= @banner.arquivo_geometry(:large).width %>;   
+		  jQuery('#crop_x').val(Math.floor(coords.x * ratio));  
+		  jQuery('#crop_y').val(Math.floor(coords.y * ratio));  
+		  jQuery('#crop_w').val(Math.floor(coords.w * ratio));  
+		  jQuery('#crop_h').val(Math.floor(coords.h * ratio));  
+		}
+	</script>  
+<% end %> 
+<div style="margin:0 auto"><%= image_tag @banner.arquivo.url(:large), :id => "cropbox" %>  </div> 
+
+
+<% form_for @banner do |form| %>  
+  <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>  
+    <%= form.hidden_field attribute, :id => attribute %>  
+  <% end %>  
+  <p><%= form.submit "Ajustar" %></p>  
+<% end %>  

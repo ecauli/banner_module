@@ -1,0 +1,27 @@
+<h1>Lista de banners</h1>
+
+<table>
+  <tr>
+    <th>Titulo</th>
+	<th>Topo</th>
+	<th>Conteudo</th>
+    <th>Click</th>
+  </tr>
+
+<% @banners.each do |banner| %>
+  <tr>
+    <td><%=h banner.titulo %></td>
+	<td><%=h simnao(banner.topo) %></td>
+	<td><%=h simnao(banner.conteudo) %></td>
+	<td><%=h banner.click %></td>  
+    <td><%= link_to 'Detalhes', banner %></td>
+    <td><%= link_to 'Editar', edit_banner_path(banner) %></td>
+    <td><%= link_to 'Deletar', banner, :confirm => 'tem certeza?', :method => :delete %></td>
+	<td><%= link_to 'Recortar', "/banners/crop/" + banner.id.to_s %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @banners %>
+<br />
+
+<%= link_to 'Novo Banner', new_banner_path %>

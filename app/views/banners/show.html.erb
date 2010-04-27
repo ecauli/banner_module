@@ -1,0 +1,21 @@
+<p>
+  <b>Titulo:</b>
+  <%=h @banner.titulo %>
+</p>
+<p>
+  <b>Link:</b>
+  <%=h @banner.link %>
+</p>
+<p>
+  <b>Click:</b>
+  <%=h @banner.click %>
+</p>
+</p>
+<p>
+  <b>Figura:</b>
+  <%= image_tag @banner.arquivo.url(:show) %>
+</p>
+
+
+<%= link_to 'Editar', edit_banner_path(@banner) %> |
+<%= link_to 'Voltar', banners_path %>
